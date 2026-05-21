@@ -52,7 +52,7 @@
             transition: background-color 0.5s ease;
         }
 
-        /* iOS FROSTED GLASS NAVIGATION BAR */
+        /* iOS NAVIGATION BAR */
         header {
             position: fixed;
             top: 0;
@@ -82,19 +82,10 @@
             white-space: nowrap; 
         }
 
-        .logo span {
-            color: var(--accent-color);
-        }
+        .logo span { color: var(--accent-color); }
 
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-        }
+        nav { display: flex; align-items: center; }
+        .nav-links { display: flex; align-items: center; }
 
         nav a {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
@@ -107,16 +98,8 @@
             opacity: 0.85;
         }
 
-        nav a:hover {
-            color: var(--accent-color);
-            opacity: 1;
-        }
-
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            margin-left: 20px;
-        }
+        nav a:hover { color: var(--accent-color); opacity: 1; }
+        .nav-controls { display: flex; align-items: center; margin-left: 20px; }
 
         .nav-btn {
             background: rgba(255, 255, 255, 0.08);
@@ -134,9 +117,7 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        [data-theme="light"] .nav-btn {
-            background: rgba(0, 0, 0, 0.05);
-        }
+        [data-theme="light"] .nav-btn { background: rgba(0, 0, 0, 0.05); }
 
         .nav-btn:hover {
             transform: scale(1.15) rotate(15deg);
@@ -149,7 +130,7 @@
         [data-theme="light"] .theme-toggle-btn .fa-moon { display: none; }
         [data-theme="light"] .theme-toggle-btn .fa-sun { display: block; }
 
-        /* HERO SECTION WITH FADE-IN ANIMATIONS */
+        /* HERO SECTION */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.75)), url('https://i.postimg.cc/vZyhkrCN/ME.png') no-repeat center center/cover;
@@ -213,9 +194,7 @@
         }
 
         /* Portfolio Section */
-        .section {
-            padding: 100px 8% 60px 8%;
-        }
+        .section { padding: 100px 8% 60px 8%; }
 
         .section-title {
             text-align: center;
@@ -226,29 +205,16 @@
         }
 
         .section-title::after {
-            content: '';
-            width: 0;
-            height: 3px;
-            background-color: var(--accent-color);
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
+            content: ''; width: 0; height: 3px; background-color: var(--accent-color);
+            position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
             transition: width 0.6s ease 0.3s;
         }
 
-        .reveal.active .section-title::after {
-            width: 60px;
-        }
+        .reveal.active .section-title::after { width: 60px; }
 
-        /* Category Filter Buttons */
         .filter-container {
-            text-align: center;
-            margin-bottom: 40px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
+            text-align: center; margin-bottom: 40px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
         }
 
         .filter-btn {
@@ -265,16 +231,11 @@
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        [data-theme="light"] .filter-btn {
-            background: rgba(0, 0, 0, 0.03);
-        }
+        [data-theme="light"] .filter-btn { background: rgba(0, 0, 0, 0.03); }
 
         .filter-btn.active, .filter-btn:hover {
-            background: var(--accent-color);
-            color: #000;
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(229, 169, 59, 0.3);
+            background: var(--accent-color); color: #000; border-color: var(--accent-color);
+            transform: translateY(-2px); box-shadow: 0 8px 20px rgba(229, 169, 59, 0.3);
         }
 
         .gallery-grid {
@@ -283,265 +244,304 @@
             grid-gap: 25px;
         }
 
-        /* PREMIUM HOVER POP & GLOW FOR CARDS */
         .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-            height: 280px;
-            cursor: pointer;
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
-                        border-color 0.4s ease, 
-                        box-shadow 0.4s ease;
+            position: relative; overflow: hidden; border-radius: 16px; height: 280px; cursor: pointer;
+            border: var(--glass-border); box-shadow: var(--glass-shadow);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         .gallery-item.hide { display: none; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* Card Scale and Glow on Hover */
         .gallery-item:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: var(--accent-color);
+            transform: translateY(-8px) scale(1.02); border-color: var(--accent-color);
             box-shadow: 0 12px 40px rgba(229, 169, 59, 0.2);
         }
 
-        .gallery-item:hover img { 
-            transform: scale(1.08); 
-        }
+        .gallery-item:hover img { transform: scale(1.08); }
 
         .gallery-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.4s ease;
         }
 
         [data-theme="light"] .gallery-overlay { background: rgba(255, 255, 255, 0.65); }
-
         .gallery-item:hover .gallery-overlay { opacity: 1; }
 
         .gallery-overlay h3 {
-            color: var(--accent-color);
-            font-size: 1.3rem;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            transform: translateY(15px);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: var(--accent-color); font-size: 1.3rem; letter-spacing: 1px; margin-bottom: 5px;
+            transform: translateY(15px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .gallery-item:hover .gallery-overlay h3 {
-            transform: translateY(0);
-        }
-
+        .gallery-item:hover .gallery-overlay h3 { transform: translateY(0); }
         [data-theme="light"] .gallery-overlay h3 { color: #1d1d1f; font-weight: 700; }
-
         .gallery-overlay p { font-size: 0.9rem; color: #fff; }
         [data-theme="light"] .gallery-overlay p { color: #424245; }
 
+        /* --- 💬 CUSTOMER REVIEWS SLIDER SECTION --- */
+        .feedback-section {
+            padding: 80px 0;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feedback-slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 20px 8% 30px 8%;
+            gap: 25px;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        .feedback-slider-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .feedback-card {
+            background: var(--card-bg);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: var(--ios-blur);
+            -webkit-backdrop-filter: var(--ios-blur);
+            min-width: 320px;
+            max-width: 350px;
+            padding: 28px 24px;
+            border-radius: 20px;
+            scroll-snap-align: center;
+            text-align: left;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .feedback-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(229, 169, 59, 0.15);
+        }
+
+        .feedback-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .feedback-user img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50px;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .user-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .user-info span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .rating-stars {
+            color: #ffc107;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .feedback-text {
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: var(--text-color);
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .feedback-quote-icon {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            opacity: 0.1;
+        }
+
+        /* 🗑️ REVIEW DELETE BUTTON (TRASH ICON) */
+        .review-delete-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            font-size: 0.95rem;
+            cursor: pointer;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+            z-index: 10;
+            padding: 5px;
+        }
+
+        .review-delete-btn:hover {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* ➕ WRITE REVIEW BUTTON */
+        .write-review-trigger-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: var(--glass-border);
+            color: var(--text-color);
+            padding: 12px 28px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.4s ease;
+        }
+        
+        [data-theme="light"] .write-review-trigger-btn { background: rgba(0, 0, 0, 0.03); }
+
+        .write-review-trigger-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(229, 169, 59, 0.35);
+        }
+
+        /* 📝 POPUP REVIEW MODAL SYSTEM */
+        .review-modal {
+            display: none; position: fixed; z-index: 4000; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            justify-content: center; align-items: center; padding: 15px;
+        }
+
+        .review-modal-card {
+            background: var(--card-bg);
+            border: var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            width: 100%;
+            max-width: 440px;
+            border-radius: 24px;
+            padding: 30px 25px;
+            position: relative;
+            text-align: center;
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .review-modal-close {
+            position: absolute; top: 15px; right: 20px; color: var(--text-color); font-size: 24px; cursor: pointer; opacity: 0.6; transition: 0.3s;
+        }
+        .review-modal-close:hover { opacity: 1; color: var(--accent-color); transform: rotate(90deg); }
+
+        .review-modal-card h3 {
+            font-size: 1.25rem; margin-bottom: 8px; color: var(--text-color);
+        }
+        .review-modal-card p {
+            font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;
+        }
+
+        .review-form-group {
+            margin-bottom: 15px; text-align: left;
+        }
+        .review-form-group label {
+            display: block; font-size: 0.8rem; margin-bottom: 5px; color: var(--text-muted); font-weight: 500;
+        }
+
+        .review-modal-input {
+            width: 100%; padding: 11px 14px; border-radius: 12px; background: rgba(255,255,255,0.05); border: var(--glass-border); color: var(--text-color); font-size: 0.9rem; outline: none; transition: border-color 0.3s;
+        }
+        [data-theme="light"] .review-modal-input { background: rgba(0,0,0,0.03); }
+        .review-modal-input:focus { border-color: var(--accent-color); }
+
+        /* Stars Selector */
+        .star-selector {
+            display: flex; gap: 8px; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; margin-top: 5px;
+        }
+        .star-selector i {
+            color: rgba(255, 255, 255, 0.15); cursor: pointer; transition: transform 0.2s, color 0.2s;
+        }
+        [data-theme="light"] .star-selector i { color: rgba(0, 0, 0, 0.12); }
+        .star-selector i.active, .star-selector i:hover {
+            color: #ffc107; transform: scale(1.2);
+        }
+
+        .review-submit-btn {
+            width: 100%; background: var(--accent-color); color: #000; border: none; padding: 12px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;
+        }
+        .review-submit-btn:hover { box-shadow: 0 5px 15px rgba(229, 169, 59, 0.4); transform: translateY(-2px); }
+
         /* Lightbox Layout */
         .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.94);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.94); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            justify-content: center; align-items: center; padding: 20px;
         }
-
-        .lightbox-content {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-            border: var(--glass-border);
-            animation: zoomIn 0.3s ease-out;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px; right: 25px;
-            color: #fff;
-            font-size: 35px;
-            cursor: pointer;
-            z-index: 2100;
-            transition: transform 0.3s ease;
-        }
+        .lightbox-content { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; border: var(--glass-border); animation: zoomIn 0.3s ease-out; }
+        .lightbox-close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 35px; cursor: pointer; z-index: 2100; transition: transform 0.3s ease; }
         .lightbox-close:hover { transform: scale(1.2) rotate(90deg); color: var(--accent-color); }
 
         /* --- 👤 RESPONSIVE AUTH MODAL --- */
         .auth-modal {
-            display: none;
-            position: fixed;
-            z-index: 3000;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            overflow-y: auto;
+            display: none; position: fixed; z-index: 3000; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            justify-content: center; align-items: center; padding: 15px; overflow-y: auto;
         }
-
-        .auth-card {
-            background: var(--card-bg);
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            width: 100%;
-            max-width: 400px;
-            border-radius: 24px;
-            padding: 30px 25px;
-            position: relative;
-            margin: auto;
-            animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .auth-close {
-            position: absolute;
-            top: 15px; right: 20px;
-            color: var(--text-color);
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: 0.3s;
-        }
+        .auth-card { background: var(--card-bg); border: var(--glass-border); box-shadow: var(--glass-shadow); width: 100%; max-width: 400px; border-radius: 24px; padding: 30px 25px; position: relative; margin: auto; animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .auth-close { position: absolute; top: 15px; right: 20px; color: var(--text-color); font-size: 24px; cursor: pointer; opacity: 0.6; transition: 0.3s; }
         .auth-close:hover { opacity: 1; color: var(--accent-color); transform: rotate(90deg); }
-
-        .auth-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+        .auth-tabs { display: flex; justify-content: center; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); }
         [data-theme="light"] .auth-tabs { border-bottom: 1px solid rgba(0,0,0,0.1); }
-
-        .auth-tab {
-            background: none; border: none;
-            color: var(--text-color);
-            padding: 10px 20px; font-size: 1rem; font-weight: 600;
-            cursor: pointer; opacity: 0.5; position: relative;
-            transition: 0.3s ease;
-        }
+        .auth-tab { background: none; border: none; color: var(--text-color); padding: 10px 20px; font-size: 1rem; font-weight: 600; cursor: pointer; opacity: 0.5; position: relative; transition: 0.3s ease; }
         .auth-tab.active { opacity: 1; color: var(--accent-color); }
-        .auth-tab.active::after {
-            content: ''; width: 100%; height: 3px; background: var(--accent-color);
-            position: absolute; bottom: -1px; left: 0; border-radius: 10px;
-        }
-
+        .auth-tab.active::after { content: ''; width: 100%; height: 3px; background: var(--accent-color); position: absolute; bottom: -1px; left: 0; border-radius: 10px; }
         .auth-form { display: none; }
         .auth-form.active { display: block; animation: fadeInShort 0.4s ease-in-out; }
-
         .input-group { margin-bottom: 16px; text-align: left; }
         .input-group label { display: block; font-size: 0.85rem; margin-bottom: 6px; color: var(--text-muted); }
-        .input-group input {
-            width: 100%; padding: 12px 16px; border-radius: 12px;
-            background: rgba(255,255,255,0.05); border: var(--glass-border);
-            color: var(--text-color); font-size: 0.95rem; outline: none;
-            transition: border-color 0.3s;
-        }
+        .input-group input { width: 100%; padding: 12px 16px; border-radius: 12px; background: rgba(255,255,255,0.05); border: var(--glass-border); color: var(--text-color); font-size: 0.95rem; outline: none; transition: border-color 0.3s; }
         [data-theme="light"] .input-group input { background: rgba(0,0,0,0.03); }
         .input-group input:focus { border-color: var(--accent-color); }
-
-        .auth-submit-btn {
-            width: 100%; background: var(--accent-color); color: #000;
-            border: none; padding: 13px; border-radius: 50px;
-            font-weight: 600; font-size: 1rem; cursor: pointer; margin-top: 10px;
-            transition: all 0.3s ease;
-        }
+        .auth-submit-btn { width: 100%; background: var(--accent-color); color: #000; border: none; padding: 13px; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-top: 10px; transition: all 0.3s ease; }
         .auth-submit-btn:hover { box-shadow: 0 5px 15px rgba(229, 169, 59, 0.4); transform: translateY(-2px); }
 
         /* Contact Card */
-        .contact-container {
-            background: var(--card-bg);
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            padding: 50px 40px;
-            border-radius: 24px;
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
+        .contact-container { background: var(--card-bg); border: var(--glass-border); box-shadow: var(--glass-shadow); padding: 50px 40px; border-radius: 24px; max-width: 600px; margin: 0 auto; text-align: center; }
         .contact-container p { color: var(--text-muted); margin-bottom: 30px; }
-
-        .whatsapp-btn {
-            background-color: #25d366;
-            color: white;
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-        }
+        .whatsapp-btn { background-color: #25d366; color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; font-size: 1.1rem; transition: all 0.4s ease; }
         .whatsapp-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45); }
 
-        /* --- 🚀 LIGHTWEIGHT SCROLL-REVEAL SYSTEM --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* SCROLL-REVEAL SYSTEM */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            border-top: var(--glass-border);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
+        footer { text-align: center; padding: 40px 0; border-top: var(--glass-border); color: var(--text-muted); font-size: 0.9rem; }
         .social-icons { margin-bottom: 15px; }
         .social-icons a { color: var(--text-muted); font-size: 1.3rem; margin: 0 10px; text-decoration: none; transition: 0.3s;}
         .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
 
-        /* --- KEYFRAMES ANIMATIONS --- */
-        @keyframes heroFadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes modalPop {
-            from { opacity: 0; transform: translateY(-30px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        @keyframes fadeInShort {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* --- KEYFRAMES --- */
+        @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes modalPop { from { opacity: 0; transform: translateY(-30px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes fadeInShort { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 📱 RESPONSIVE BREAKPOINTS --- */
+        /* --- RESPONSIVE BREAKPOINTS --- */
         @media (max-width: 992px) {
             header { padding: 16px 5%; }
             .section { padding: 80px 5% 40px 5%; }
+            .feedback-slider-container { padding: 20px 5% 40px 5%; }
         }
 
         @media (max-width: 768px) {
@@ -552,10 +552,10 @@
             .filter-btn { padding: 8px 18px; font-size: 0.85rem; }
             .contact-container { padding: 35px 20px; }
             .lightbox-close { top: 15px; right: 15px; font-size: 30px; }
-            
-            /* Disable intensive hover effects on touch devices to ensure smooth scrolling */
             .gallery-item:hover { transform: translateY(-4px); }
             .gallery-item:hover img { transform: scale(1.03); }
+            
+            .feedback-card { min-width: 290px; padding: 24px 20px; }
         }
 
         @media (max-width: 480px) {
@@ -565,6 +565,7 @@
             .nav-btn { width: 36px; height: 36px; font-size: 1rem; margin-left: 8px; }
             .hero h1 { font-size: 1.8rem; }
             .auth-card { padding: 25px 18px; border-radius: 20px; }
+            .review-modal-card { padding: 25px 15px; border-radius: 20px; }
         }
     </style>
 </head>
@@ -577,6 +578,7 @@
             <div class="nav-links">
                 <a href="#">Home</a>
                 <a href="#gallery">Portfolio</a>
+                <a href="#testimonials">Reviews</a>
                 <a href="#contact">Contact</a>
             </div>
             
@@ -606,7 +608,6 @@
             <h2 class="section-title">Our Catalog</h2>
         </div>
         
-        <!-- FILTER BUTTONS -->
         <div class="filter-container reveal">
             <button class="filter-btn active" onclick="filterGallery('all', event)">All Works</button>
             <button class="filter-btn" onclick="filterGallery('packages', event)">Photoshoot</button>
@@ -615,7 +616,6 @@
         </div>
 
         <div class="gallery-grid reveal" id="galleryGrid">
-            <!-- 📸 PHOTOSHOOT ITEM 1 -->
             <div class="gallery-item" data-category="packages" onclick="openLightbox(this)">
                 <img src="https://i.postimg.cc/bvxsMbcr/RK-Allbum-pege.jpg" alt="Wedding Shoot">
                 <div class="gallery-overlay">
@@ -624,7 +624,6 @@
                 </div>
             </div>
 
-            <!-- 📸 PHOTOSHOOT ITEM 2 -->
             <div class="gallery-item" data-category="packages" onclick="openLightbox(this)">
                 <img src="https://i.postimg.cc/Z51wjk40/senu-all-copy.jpg" alt="Portrait Shoot">
                 <div class="gallery-overlay">
@@ -633,7 +632,6 @@
                 </div>
             </div>
 
-            <!-- 📸 PHOTOSHOOT ITEM 3 -->
             <div class="gallery-item" data-category="packages" onclick="openLightbox(this)">
                 <img src="https://i.postimg.cc/sxhXYZcx/Nayomi.jpg" alt="Night Shoot">
                 <div class="gallery-overlay">
@@ -642,7 +640,6 @@
                 </div>
             </div>
 
-            <!-- 📸 PHOTOSHOOT ITEM 4 -->
             <div class="gallery-item" data-category="packages" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=600" alt="Event Shoot">
                 <div class="gallery-overlay">
@@ -651,7 +648,6 @@
                 </div>
             </div>
 
-            <!-- 📸 PREMIUM ALBUM ITEM -->
             <div class="gallery-item" data-category="album" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=600" alt="Premium Album">
                 <div class="gallery-overlay">
@@ -660,7 +656,6 @@
                 </div>
             </div>
 
-            <!-- 🖼️ FRAMES ITEM 1 -->
             <div class="gallery-item" data-category="frames" onclick="openLightbox(this)">
                 <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=600" alt="Premium Glass Frame">
                 <div class="gallery-overlay">
@@ -671,22 +666,127 @@
         </div>
     </section>
 
-    <!-- Lightbox Popup Container -->
+    <!-- Lightbox Popup -->
     <div id="customLightbox" class="lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img class="lightbox-content" id="lightboxImg" alt="Lightbox Image">
     </div>
 
-    <!-- 👤 LOGIN / SIGNUP POPUP CONTAINER -->
+    <!-- 💬 CUSTOMER REVIEWS SLIDER SECTION -->
+    <section class="feedback-section" id="testimonials">
+        <div class="reveal">
+            <h2 class="section-title">What Our Clients Say</h2>
+        </div>
+
+        <!-- Slider Container -->
+        <div class="feedback-slider-container reveal" id="reviewsContainer">
+            
+            <!-- Default Review 1 -->
+            <div class="feedback-card">
+                <div class="feedback-user">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150" alt="Customer 1">
+                    <div class="user-info">
+                        <h4>Sanduni Perera</h4>
+                        <span>Wedding Photoshoot</span>
+                    </div>
+                </div>
+                <div class="rating-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="feedback-text">"සිරාවටම සුපිරිම වැඩක්! අපේ Wedding එකේ Photos ටික බලාපොරොත්තු වුණාටත් වඩා ලස්සනට කරලා දීලා තිබුණා. Highly recommended!"</p>
+                <i class="fa-solid fa-quote-right feedback-quote-icon"></i>
+            </div>
+
+            <!-- Default Review 2 -->
+            <div class="feedback-card">
+                <div class="feedback-user">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150" alt="Customer 2">
+                    <div class="user-info">
+                        <h4>Kasun Jayawardena</h4>
+                        <span>Premium Album & Frames</span>
+                    </div>
+                </div>
+                <div class="rating-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="feedback-text">"ගත්තු පින්තූර වගේම අපිට ලැබුණු Premium Glass Frames ටික පට්ට Quality. Frame එකේ නිමාව උපරිමයි. තැන්ක්ස් මාලිය!"</p>
+                <i class="fa-solid fa-quote-right feedback-quote-icon"></i>
+            </div>
+
+            <!-- Default Review 3 -->
+            <div class="feedback-card">
+                <div class="feedback-user">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150" alt="Customer 3">
+                    <div class="user-info">
+                        <h4>Nisansala Silva</h4>
+                        <span>Outdoor Portrait</span>
+                    </div>
+                </div>
+                <div class="rating-stars">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="feedback-text">"Friendly service එකක් ලැබුණේ. Outdoor shoot එක කරන වෙලාවේ සපෝට් එක උපරිමයි. Color retouching පැත්ත නියමෙටම කරලා තියෙනවා."</p>
+                <i class="fa-solid fa-quote-right feedback-quote-icon"></i>
+            </div>
+
+        </div>
+
+        <!-- ➕ TRIGGER BUTTON FOR CUSTOMERS -->
+        <div class="reveal">
+            <button class="write-review-trigger-btn" onclick="openReviewModal()">
+                <i class="fa-solid fa-pen-to-square"></i> Write a Review
+            </button>
+        </div>
+    </section>
+
+    <!-- 📝 USER FRIENDLY POPUP REVIEW MODAL -->
+    <div id="reviewModal" class="review-modal">
+        <div class="review-modal-card">
+            <span class="review-modal-close" onclick="closeReviewModal()">&times;</span>
+            <h3>Share Your Experience</h3>
+            <p>ඔබේ වටිනා අදහස අපිට ලියා එවන්න.</p>
+            
+            <form id="easyReviewForm" onsubmit="handleReviewSubmit(event)">
+                <div class="review-form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="revName" class="review-modal-input" placeholder="e.g., Malith Nethsara" required>
+                </div>
+                
+                <div class="review-form-group">
+                    <label>Service Type</label>
+                    <input type="text" id="revService" class="review-modal-input" placeholder="e.g., Wedding / Portrait / Frame" required>
+                </div>
+
+                <!-- Star Selector -->
+                <div class="review-form-group" style="text-align: center;">
+                    <label style="text-align: center; display: block;">Your Rating</label>
+                    <div class="star-selector">
+                        <i class="fa-solid fa-star" onclick="setFormRating(1)"></i>
+                        <i class="fa-solid fa-star" onclick="setFormRating(2)"></i>
+                        <i class="fa-solid fa-star" onclick="setFormRating(3)"></i>
+                        <i class="fa-solid fa-star" onclick="setFormRating(4)"></i>
+                        <i class="fa-solid fa-star" onclick="setFormRating(5)"></i>
+                    </div>
+                </div>
+
+                <div class="review-form-group">
+                    <label>Review Message</label>
+                    <textarea id="revMessage" class="review-modal-input" rows="4" placeholder="How was our service?..." style="resize: none;" required></textarea>
+                </div>
+
+                <button type="submit" class="review-submit-btn">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 👤 LOGIN / SIGNUP MODAL -->
     <div id="authModal" class="auth-modal">
         <div class="auth-card">
             <span class="auth-close" onclick="closeAuthModal()">&times;</span>
-            
             <div class="auth-tabs">
                 <button class="auth-tab active" onclick="switchAuthTab('login', this)">Login</button>
                 <button class="auth-tab" onclick="switchAuthTab('register', this)">Sign Up</button>
             </div>
-
             <!-- Login Form -->
             <form id="loginForm" class="auth-form active" onsubmit="event.preventDefault(); alert('Login Form Submitted!');">
                 <div class="input-group">
@@ -699,7 +799,6 @@
                 </div>
                 <button type="submit" class="auth-submit-btn">Sign In</button>
             </form>
-
             <!-- Register Form -->
             <form id="registerForm" class="auth-form" onsubmit="event.preventDefault(); alert('Registration Form Submitted!');">
                 <div class="input-group">
@@ -804,7 +903,6 @@
                     }
                 }
             });
-            // Recalculate reveal on filtering
             reveal();
         }
 
@@ -837,9 +935,144 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        // Run once on load
         window.addEventListener("DOMContentLoaded", reveal);
-        setTimeout(reveal, 200); // Fail-safe trigger
+        setTimeout(reveal, 200);
+
+
+        /* ⚡ USER FRIENDLY REVIEW LOGIC WITH LOCALSTORAGE & DELETE FEATURE ⚡ */
+        let userSelectedRating = 5;
+        setFormRating(5);
+
+        // Page එක Load වෙද්දී සේව් කරපු Reviews Slider එකට ගන්නවා
+        window.addEventListener('DOMContentLoaded', () => {
+            loadSavedReviews();
+            reveal(); 
+        });
+
+        function openReviewModal() {
+            document.getElementById('reviewModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('reviewModal').addEventListener('click', function(e) {
+            if (e.target === this) { closeReviewModal(); }
+        });
+
+        function setFormRating(val) {
+            userSelectedRating = val;
+            const modalStars = document.querySelectorAll('.star-selector i');
+            modalStars.forEach((star, index) => {
+                if (index < val) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // Slider එකට Review Card එකක් හදන Function එක (මෙතනදී Unique ID එකක් සෙට් කරනවා)
+        function createReviewCard(id, name, service, message, rating, prepend = true) {
+            let starsHtml = '';
+            for (let i = 0; i < rating; i++) {
+                starsHtml += '<i class="fa-solid fa-star"></i>';
+            }
+
+            const newCard = document.createElement('div');
+            newCard.className = 'feedback-card';
+            newCard.setAttribute('data-id', id); // Delete කරන්න ලේසි වෙන්න ID එකක් දානවා
+            newCard.innerHTML = `
+                <!-- 🗑️ Delete Button -->
+                <button class="review-delete-btn" onclick="deleteReview('${id}')" title="Delete Review">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+                <div class="feedback-user">
+                    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User Avatar">
+                    <div class="user-info">
+                        <h4>${name}</h4>
+                        <span>${service}</span>
+                    </div>
+                </div>
+                <div class="rating-stars">
+                    ${starsHtml}
+                </div>
+                <p class="feedback-text">"${message}"</p>
+                <i class="fa-solid fa-quote-right feedback-quote-icon"></i>
+            `;
+
+            const container = document.getElementById('reviewsContainer');
+            if (prepend) {
+                container.insertBefore(newCard, container.firstChild);
+            } else {
+                container.appendChild(newCard);
+            }
+        }
+
+        // Form එක Submit වෙද්දී වැඩ කරන කොටස
+        function handleReviewSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('revName').value;
+            const service = document.getElementById('revService').value;
+            const message = document.getElementById('revMessage').value;
+            
+            // Unique ID එකක් විදිහට Current Timestamp එක ගන්නවා
+            const reviewId = 'rev_' + Date.now(); 
+
+            // 1. UI එකට Live Card එක දානවා
+            createReviewCard(reviewId, name, service, message, userSelectedRating, true);
+
+            // 2. LocalStorage එකට සේව් කරනවා
+            const newReviewObj = { id: reviewId, name, service, message, rating: userSelectedRating };
+            let currentReviews = JSON.parse(localStorage.getItem('maliyah_reviews')) || [];
+            currentReviews.unshift(newReviewObj);
+            localStorage.setItem('maliyah_reviews', JSON.stringify(currentReviews));
+
+            // Form එක සහ Modal එක Reset කරනවා
+            closeReviewModal();
+            alert('Thank you! Your review is saved permanently. ❤️');
+            document.getElementById('easyReviewForm').reset();
+            setFormRating(5);
+
+            // Slider එක මුලටම ස්‍ක්‍රෝල් කරනවා
+            const container = document.getElementById('reviewsContainer');
+            container.scrollLeft = 0;
+        }
+
+        // LocalStorage එකෙන් Data කියවලා Slider එකට දාන Function එක
+        function loadSavedReviews() {
+            let savedReviews = JSON.parse(localStorage.getItem('maliyah_reviews')) || [];
+            savedReviews.reverse().forEach(rev => {
+                // කලින් ID එකක් නැතිව සේව් වුණු ඒවා තිබුණොත් ඒවටත් Random ID එකක් දෙනවා ආරක්ෂාවට
+                const id = rev.id || 'rev_' + Math.random().toString(36).substr(2, 9);
+                createReviewCard(id, rev.name, rev.service, rev.message, rev.rating, true);
+            });
+        }
+
+        // 🗑️ REVIEW එකක් REMOVE / DELETE කරන FUNCTION එක
+        function deleteReview(id) {
+            if (confirm("Are you sure you want to delete this review?")) {
+                // 1. LocalStorage එකෙන් අදාළ Review එක අයින් කරනවා
+                let currentReviews = JSON.parse(localStorage.getItem('maliyah_reviews')) || [];
+                currentReviews = currentReviews.filter(rev => rev.id !== id);
+                localStorage.setItem('maliyah_reviews', JSON.stringify(currentReviews));
+
+                // 2. UI එකෙන් (Screen එකෙන්) ඒ Card එක Fade-out කරලා අයින් කරනවා
+                const card = document.querySelector(`.feedback-card[data-id="${id}"]`);
+                if (card) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    card.style.transition = 'all 0.3s ease';
+                    setTimeout(() => {
+                        card.remove();
+                    }, 300);
+                }
+            }
+        }
     </script>
 </body>
 </html>
