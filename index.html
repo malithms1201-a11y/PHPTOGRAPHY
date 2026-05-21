@@ -42,7 +42,6 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
-            transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         body {
@@ -50,6 +49,7 @@
             color: var(--text-color);
             overflow-x: hidden;
             background-image: var(--body-gradient);
+            transition: background-color 0.5s ease;
         }
 
         /* iOS FROSTED GLASS NAVIGATION BAR */
@@ -103,7 +103,7 @@
             margin-left: 30px;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: 0.3s;
+            transition: color 0.3s ease, opacity 0.3s ease;
             opacity: 0.85;
         }
 
@@ -118,7 +118,6 @@
             margin-left: 20px;
         }
 
-        /* UTILITY NAVBAR BUTTONS */
         .nav-btn {
             background: rgba(255, 255, 255, 0.08);
             border: var(--glass-border);
@@ -132,7 +131,7 @@
             justify-content: center;
             align-items: center;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         [data-theme="light"] .nav-btn {
@@ -140,17 +139,17 @@
         }
 
         .nav-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.15) rotate(15deg);
             background: var(--accent-color);
             color: #000;
+            box-shadow: 0 0 15px rgba(229, 169, 59, 0.5);
         }
 
-        /* Sun / Moon Icons display */
         .theme-toggle-btn .fa-sun { display: none; }
         [data-theme="light"] .theme-toggle-btn .fa-moon { display: none; }
         [data-theme="light"] .theme-toggle-btn .fa-sun { display: block; }
 
-        /* HERO SECTION */
+        /* HERO SECTION WITH FADE-IN ANIMATIONS */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.75)), url('https://i.postimg.cc/vZyhkrCN/ME.png') no-repeat center center/cover;
@@ -171,7 +170,9 @@
             font-weight: 700;
             letter-spacing: 3px;
             margin-bottom: 15px;
-            animation: fadeInUp 1s ease forwards 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         .hero p {
@@ -179,6 +180,15 @@
             color: var(--text-muted);
             margin-bottom: 30px;
             letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(25px);
+            animation: heroFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.2s;
+        }
+
+        .hero .btn {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroFadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.4s;
         }
 
         .btn {
@@ -191,15 +201,15 @@
             text-decoration: none;
             font-weight: 600;
             border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: inline-block;
         }
 
         .btn:hover {
             background-color: var(--text-color);
             color: var(--bg-color);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(229, 169, 59, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(229, 169, 59, 0.45);
         }
 
         /* Portfolio Section */
@@ -217,13 +227,18 @@
 
         .section-title::after {
             content: '';
-            width: 60px;
+            width: 0;
             height: 3px;
             background-color: var(--accent-color);
             position: absolute;
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
+            transition: width 0.6s ease 0.3s;
+        }
+
+        .reveal.active .section-title::after {
+            width: 60px;
         }
 
         /* Category Filter Buttons */
@@ -247,7 +262,7 @@
             font-weight: 600;
             border-radius: 30px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         [data-theme="light"] .filter-btn {
@@ -258,7 +273,8 @@
             background: var(--accent-color);
             color: #000;
             border-color: var(--accent-color);
-            box-shadow: 0 8px 20px rgba(229, 169, 59, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(229, 169, 59, 0.3);
         }
 
         .gallery-grid {
@@ -267,7 +283,7 @@
             grid-gap: 25px;
         }
 
-        /* Gallery Item Box */
+        /* PREMIUM HOVER POP & GLOW FOR CARDS */
         .gallery-item {
             position: relative;
             overflow: hidden;
@@ -276,6 +292,9 @@
             cursor: pointer;
             border: var(--glass-border);
             box-shadow: var(--glass-shadow);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
         }
 
         .gallery-item.hide { display: none; }
@@ -284,26 +303,35 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .gallery-item:hover img { transform: scale(1.06); }
+        /* Card Scale and Glow on Hover */
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--accent-color);
+            box-shadow: 0 12px 40px rgba(229, 169, 59, 0.2);
+        }
+
+        .gallery-item:hover img { 
+            transform: scale(1.08); 
+        }
 
         .gallery-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(10, 10, 10, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: 0.4s ease;
+            transition: opacity 0.4s ease;
         }
 
-        [data-theme="light"] .gallery-overlay { background: rgba(255, 255, 255, 0.55); }
+        [data-theme="light"] .gallery-overlay { background: rgba(255, 255, 255, 0.65); }
 
         .gallery-item:hover .gallery-overlay { opacity: 1; }
 
@@ -312,6 +340,12 @@
             font-size: 1.3rem;
             letter-spacing: 1px;
             margin-bottom: 5px;
+            transform: translateY(15px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-item:hover .gallery-overlay h3 {
+            transform: translateY(0);
         }
 
         [data-theme="light"] .gallery-overlay h3 { color: #1d1d1f; font-weight: 700; }
@@ -319,7 +353,7 @@
         .gallery-overlay p { font-size: 0.9rem; color: #fff; }
         [data-theme="light"] .gallery-overlay p { color: #424245; }
 
-        /* Lightbox Styling */
+        /* Lightbox Layout */
         .lightbox {
             display: none;
             position: fixed;
@@ -339,6 +373,7 @@
             object-fit: contain;
             border-radius: 8px;
             border: var(--glass-border);
+            animation: zoomIn 0.3s ease-out;
         }
 
         .lightbox-close {
@@ -348,7 +383,9 @@
             font-size: 35px;
             cursor: pointer;
             z-index: 2100;
+            transition: transform 0.3s ease;
         }
+        .lightbox-close:hover { transform: scale(1.2) rotate(90deg); color: var(--accent-color); }
 
         /* --- 👤 RESPONSIVE AUTH MODAL --- */
         .auth-modal {
@@ -361,8 +398,8 @@
             -webkit-backdrop-filter: blur(15px);
             justify-content: center;
             align-items: center;
-            padding: 15px; /* Mobile එකේදී අයිනෙන් ඉඩ තියාගන්න */
-            overflow-y: auto; /* ෆෝන් එක මදි වුනොත් form එක scroll කරන්න */
+            padding: 15px;
+            overflow-y: auto;
         }
 
         .auth-card {
@@ -374,7 +411,8 @@
             border-radius: 24px;
             padding: 30px 25px;
             position: relative;
-            margin: auto; /* Vertical centering safe guard */
+            margin: auto;
+            animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .auth-close {
@@ -384,8 +422,9 @@
             font-size: 24px;
             cursor: pointer;
             opacity: 0.6;
+            transition: 0.3s;
         }
-        .auth-close:hover { opacity: 1; color: var(--accent-color); }
+        .auth-close:hover { opacity: 1; color: var(--accent-color); transform: rotate(90deg); }
 
         .auth-tabs {
             display: flex;
@@ -400,6 +439,7 @@
             color: var(--text-color);
             padding: 10px 20px; font-size: 1rem; font-weight: 600;
             cursor: pointer; opacity: 0.5; position: relative;
+            transition: 0.3s ease;
         }
         .auth-tab.active { opacity: 1; color: var(--accent-color); }
         .auth-tab.active::after {
@@ -408,7 +448,7 @@
         }
 
         .auth-form { display: none; }
-        .auth-form.active { display: block; }
+        .auth-form.active { display: block; animation: fadeInShort 0.4s ease-in-out; }
 
         .input-group { margin-bottom: 16px; text-align: left; }
         .input-group label { display: block; font-size: 0.85rem; margin-bottom: 6px; color: var(--text-muted); }
@@ -416,6 +456,7 @@
             width: 100%; padding: 12px 16px; border-radius: 12px;
             background: rgba(255,255,255,0.05); border: var(--glass-border);
             color: var(--text-color); font-size: 0.95rem; outline: none;
+            transition: border-color 0.3s;
         }
         [data-theme="light"] .input-group input { background: rgba(0,0,0,0.03); }
         .input-group input:focus { border-color: var(--accent-color); }
@@ -424,7 +465,9 @@
             width: 100%; background: var(--accent-color); color: #000;
             border: none; padding: 13px; border-radius: 50px;
             font-weight: 600; font-size: 1rem; cursor: pointer; margin-top: 10px;
+            transition: all 0.3s ease;
         }
+        .auth-submit-btn:hover { box-shadow: 0 5px 15px rgba(229, 169, 59, 0.4); transform: translateY(-2px); }
 
         /* Contact Card */
         .contact-container {
@@ -451,13 +494,16 @@
             align-items: center;
             gap: 10px;
             font-size: 1.1rem;
+            transition: all 0.4s ease;
         }
+        .whatsapp-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45); }
 
-        /* Scroll Animation */
+        /* --- 🚀 LIGHTWEIGHT SCROLL-REVEAL SYSTEM --- */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .reveal.active {
             opacity: 1;
@@ -472,23 +518,44 @@
             font-size: 0.9rem;
         }
         .social-icons { margin-bottom: 15px; }
-        .social-icons a { color: var(--text-muted); font-size: 1.3rem; margin: 0 10px; text-decoration: none;}
-        .social-icons a:hover { color: var(--accent-color); }
+        .social-icons a { color: var(--text-muted); font-size: 1.3rem; margin: 0 10px; text-decoration: none; transition: 0.3s;}
+        .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
 
-        /* --- 📱 RESPONSIVE BREAKPOINTS (MEDIA QUERIES) --- */
+        /* --- KEYFRAMES ANIMATIONS --- */
+        @keyframes heroFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes modalPop {
+            from { opacity: 0; transform: translateY(-30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes fadeInShort {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 📱 RESPONSIVE BREAKPOINTS --- */
         @media (max-width: 992px) {
             header { padding: 16px 5%; }
             .section { padding: 80px 5% 40px 5%; }
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* ෆෝන් වලදී මැද තියෙන menu ලින්ක්ස් හංගනවා */
+            .nav-links { display: none; }
             .logo { font-size: 18px; }
             .hero h1 { font-size: 2.3rem; letter-spacing: 1px; }
             .hero p { font-size: 1rem; }
             .filter-btn { padding: 8px 18px; font-size: 0.85rem; }
             .contact-container { padding: 35px 20px; }
             .lightbox-close { top: 15px; right: 15px; font-size: 30px; }
+            
+            /* Disable intensive hover effects on touch devices to ensure smooth scrolling */
+            .gallery-item:hover { transform: translateY(-4px); }
+            .gallery-item:hover img { transform: scale(1.03); }
         }
 
         @media (max-width: 480px) {
@@ -499,11 +566,6 @@
             .hero h1 { font-size: 1.8rem; }
             .auth-card { padding: 25px 18px; border-radius: 20px; }
         }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
@@ -512,22 +574,18 @@
     <header>
         <div class="logo">MALIYAH PICSTUDIO<span>.</span></div>
         <nav>
-            <!-- Desktop Links (Will hide on mobile) -->
             <div class="nav-links">
                 <a href="#">Home</a>
                 <a href="#gallery">Portfolio</a>
                 <a href="#contact">Contact</a>
             </div>
             
-            <!-- Controls Group (Visible on all devices) -->
             <div class="nav-controls">
-                <!-- 🌓 DARK/LIGHT TOGGLE BUTTON -->
                 <button class="nav-btn theme-toggle-btn" id="themeToggle" aria-label="Toggle Theme">
                     <i class="fa-solid fa-moon"></i>
                     <i class="fa-solid fa-sun"></i>
                 </button>
 
-                <!-- 👤 USER ACCOUNT BUTTON -->
                 <button class="nav-btn" id="accountToggle" onclick="openAuthModal()" aria-label="User Account">
                     <i class="fa-solid fa-user"></i>
                 </button>
@@ -544,7 +602,9 @@
 
     <!-- Gallery Section -->
     <section class="section" id="gallery">
-        <h2 class="section-title reveal">Our Catalog</h2>
+        <div class="reveal">
+            <h2 class="section-title">Our Catalog</h2>
+        </div>
         
         <!-- FILTER BUTTONS -->
         <div class="filter-container reveal">
@@ -701,12 +761,12 @@
         /* 👤 Auth Modal Functions */
         function openAuthModal() {
             document.getElementById('authModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Disable background scroll when open
+            document.body.style.overflow = 'hidden';
         }
 
         function closeAuthModal() {
             document.getElementById('authModal').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scroll
+            document.body.style.overflow = 'auto';
         }
 
         document.getElementById('authModal').addEventListener('click', function(e) {
@@ -744,6 +804,8 @@
                     }
                 }
             });
+            // Recalculate reveal on filtering
+            reveal();
         }
 
         /* Lightbox Functions */
@@ -763,19 +825,21 @@
             if (e.target !== document.getElementById('lightboxImg')) { closeLightbox(); }
         });
 
-        /* Scroll Reveal Animation */
+        /* Scroll Reveal Animation Logic */
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
+                if (elementTop < windowHeight - 80) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal();
+        // Run once on load
+        window.addEventListener("DOMContentLoaded", reveal);
+        setTimeout(reveal, 200); // Fail-safe trigger
     </script>
 </body>
 </html>
