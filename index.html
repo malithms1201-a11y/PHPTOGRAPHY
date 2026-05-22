@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MALIYAH PICSTUDIO | Professional Photography</title>
     <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght=300;400;500;600;700&family=Poppins:wght=300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -279,225 +279,271 @@
         .gallery-overlay p { font-size: 0.9rem; color: #fff; }
         [data-theme="light"] .gallery-overlay p { color: #424245; }
 
-        /* --- 💬 CUSTOMER REVIEWS SLIDER SECTION --- */
-        .feedback-section {
-            padding: 80px 0;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
-        }
 
-        .feedback-slider-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            padding: 20px 8% 30px 8%;
-            gap: 25px;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-        }
-
-        .feedback-slider-container::-webkit-scrollbar {
+        /* INTERFACE OVERLAY BASE STYLE */
+        .page-overlay-premium {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            background-image: var(--body-gradient);
+            z-index: 5000;
+            overflow-y: auto;
+            padding: 60px 8%;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .feedback-card {
+        .page-overlay-premium.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .inner-page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: var(--glass-border);
+            padding-bottom: 15px;
+        }
+
+        .back-btn-premium {
+            background: rgba(255, 255, 255, 0.06);
+            border: var(--glass-border);
+            color: var(--text-color);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] .back-btn-premium { background: rgba(0, 0, 0, 0.04); }
+
+        .back-btn-premium:hover {
+            background: #ff4d4d;
+            color: #fff;
+            border-color: #ff4d4d;
+            transform: translateX(-4px);
+        }
+
+        .premium-content-card {
             background: var(--card-bg);
             border: var(--glass-border);
             box-shadow: var(--glass-shadow);
             backdrop-filter: var(--ios-blur);
             -webkit-backdrop-filter: var(--ios-blur);
-            min-width: 320px;
-            max-width: 350px;
-            padding: 28px 24px;
-            border-radius: 20px;
-            scroll-snap-align: center;
-            text-align: left;
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            padding: 40px 30px;
+            border-radius: 24px;
+            max-width: 950px;
+            margin: 0 auto 50px auto;
         }
 
-        .feedback-card:hover {
+        /* SHOWCASE PREVIEW GRID STYLE */
+        .showcase-preview-section {
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 40px;
+        }
+
+        [data-theme="light"] .showcase-preview-section {
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .showcase-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-gap: 24px;
+            margin-top: 25px;
+        }
+
+        .showcase-sample-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: var(--glass-border);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        [data-theme="light"] .showcase-sample-item { background: rgba(0, 0, 0, 0.01); }
+
+        .showcase-sample-item:hover {
             transform: translateY(-5px);
             border-color: var(--accent-color);
-            box-shadow: 0 10px 25px rgba(229, 169, 59, 0.15);
         }
 
-        .feedback-user {
+        .showcase-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: #111;
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
+            justify-content: center;
         }
 
-        .feedback-user img {
-            width: 48px;
-            height: 48px;
-            border-radius: 50px;
+        .showcase-img-wrapper img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border: 2px solid var(--accent-color);
+            transition: transform 0.5s ease;
         }
 
-        .user-info h4 {
+        .showcase-sample-item:hover .showcase-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .showcase-sample-info {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .showcase-sample-info h4 {
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--text-color);
+            margin-bottom: 4px;
         }
 
-        .user-info span {
-            font-size: 0.78rem;
+        .showcase-sample-info p {
+            font-size: 0.8rem;
             color: var(--text-muted);
         }
 
-        .rating-stars {
-            color: #ffc107;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
-
-        .feedback-text {
-            font-size: 0.88rem;
-            line-height: 1.5;
-            color: var(--text-color);
-            opacity: 0.9;
-            font-style: italic;
-        }
-
-        .feedback-quote-icon {
-            position: absolute;
-            bottom: 15px;
-            right: 20px;
-            font-size: 1.8rem;
-            color: var(--accent-color);
-            opacity: 0.1;
-        }
-
-        /* 🗑️ REVIEW DELETE BUTTON (TRASH ICON) */
-        .review-delete-btn {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: none;
-            border: none;
-            color: #ff4d4d;
-            font-size: 0.95rem;
-            cursor: pointer;
-            opacity: 0.4;
-            transition: all 0.3s ease;
-            z-index: 10;
-            padding: 5px;
-        }
-
-        .review-delete-btn:hover {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-
-        /* ➕ WRITE REVIEW BUTTON */
-        .write-review-trigger-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: var(--glass-border);
-            color: var(--text-color);
-            padding: 12px 28px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 15px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.4s ease;
-        }
-        
-        [data-theme="light"] .write-review-trigger-btn { background: rgba(0, 0, 0, 0.03); }
-
-        .write-review-trigger-btn:hover {
-            background: var(--accent-color);
-            color: #000;
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(229, 169, 59, 0.35);
-        }
-
-        /* 📝 POPUP REVIEW MODAL SYSTEM */
-        .review-modal {
-            display: none; position: fixed; z-index: 4000; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            justify-content: center; align-items: center; padding: 15px;
-        }
-
-        .review-modal-card {
-            background: var(--card-bg);
-            border: var(--glass-border);
-            box-shadow: var(--glass-shadow);
+        /* TABLES STYLE */
+        .price-table {
             width: 100%;
-            max-width: 440px;
-            border-radius: 24px;
-            padding: 30px 25px;
-            position: relative;
-            text-align: center;
-            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-collapse: collapse;
+            margin-top: 10px;
+            text-align: left;
         }
 
-        .review-modal-close {
-            position: absolute; top: 15px; right: 20px; color: var(--text-color); font-size: 24px; cursor: pointer; opacity: 0.6; transition: 0.3s;
+        .price-table th {
+            background: rgba(229, 169, 59, 0.15);
+            color: var(--accent-color);
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(229, 169, 59, 0.3);
         }
+
+        .price-table td {
+            padding: 16px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.95rem;
+            color: var(--text-color);
+            transition: all 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+
+        [data-theme="light"] .price-table td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* ROW FADE-IN ANIMATION SYSTEM */
+        .table-row-anim {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .page-overlay-premium.active .table-row-anim {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Row Animations Delays */
+        .page-overlay-premium.active .table-row-anim:nth-child(1) { transition-delay: 0.05s; }
+        .page-overlay-premium.active .table-row-anim:nth-child(2) { transition-delay: 0.12s; }
+        .page-overlay-premium.active .table-row-anim:nth-child(3) { transition-delay: 0.19s; }
+        .page-overlay-premium.active .table-row-anim:nth-child(4) { transition-delay: 0.26s; }
+        .page-overlay-premium.active .table-row-anim:nth-child(5) { transition-delay: 0.33s; }
+        .page-overlay-premium.active .table-row-anim:nth-child(6) { transition-delay: 0.40s; }
+        .page-overlay-premium.active .table-row-anim:nth-child(7) { transition-delay: 0.47s; }
+
+        .price-table tr:hover td {
+            background: rgba(229, 169, 59, 0.08);
+            transform: scale(1.012);
+        }
+
+        .size-col { font-weight: 600; letter-spacing: 0.5px; }
+        .price-col { font-weight: 700; color: var(--accent-color); font-size: 1.1rem; text-align: right; white-space: nowrap; }
+        
+        .promo-badge {
+            background: #ff4d4d; color: #fff; font-size: 0.7rem; padding: 2px 7px; border-radius: 4px;
+            margin-right: 5px; text-transform: uppercase; font-weight: 700; display: inline-block; vertical-align: middle;
+        }
+
+        .hot-badge {
+            background: #25d366; color: #fff; font-size: 0.7rem; padding: 2px 7px; border-radius: 4px;
+            margin-right: 5px; text-transform: uppercase; font-weight: 700; display: inline-block; vertical-align: middle;
+        }
+
+        /* CUSTOMER REVIEWS SLIDER SECTION */
+        .feedback-section { padding: 80px 0; text-align: center; overflow: hidden; position: relative; }
+        .feedback-slider-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 8% 30px 8%; gap: 25px; scroll-behavior: smooth; scrollbar-width: none; }
+        .feedback-slider-container::-webkit-scrollbar { display: none; }
+
+        .feedback-card {
+            background: var(--card-bg); border: var(--glass-border); box-shadow: var(--glass-shadow); backdrop-filter: var(--ios-blur); -webkit-backdrop-filter: var(--ios-blur);
+            min-width: 320px; max-width: 350px; padding: 28px 24px; border-radius: 20px; scroll-snap-align: center; text-align: left; position: relative; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .feedback-card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 10px 25px rgba(229, 169, 59, 0.15); }
+        .feedback-user { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .feedback-user img { width: 48px; height: 48px; border-radius: 50px; object-fit: cover; border: 2px solid var(--accent-color); }
+        .user-info h4 { font-size: 0.95rem; font-weight: 600; color: var(--text-color); }
+        .user-info span { font-size: 0.78rem; color: var(--text-muted); }
+        .rating-stars { color: #ffc107; font-size: 0.8rem; margin-bottom: 10px; }
+        .feedback-text { font-size: 0.88rem; line-height: 1.5; color: var(--text-color); opacity: 0.9; font-style: italic; }
+        .feedback-quote-icon { position: absolute; bottom: 15px; right: 20px; font-size: 1.8rem; color: var(--accent-color); opacity: 0.1; }
+        .review-delete-btn { position: absolute; top: 25px; right: 25px; background: none; border: none; color: #ff4d4d; font-size: 0.95rem; cursor: pointer; opacity: 0.4; transition: all 0.3s ease; z-index: 10; padding: 5px; }
+        .review-delete-btn:hover { opacity: 1; transform: scale(1.2); }
+
+        .write-review-trigger-btn {
+            background: rgba(255, 255, 255, 0.05); border: var(--glass-border); color: var(--text-color); padding: 12px 28px; font-size: 0.9rem; font-weight: 600; border-radius: 50px; cursor: pointer; margin-top: 15px; display: inline-flex; align-items: center; gap: 8px; transition: all 0.4s ease;
+        }
+        [data-theme="light"] .write-review-trigger-btn { background: rgba(0, 0, 0, 0.03); }
+        .write-review-trigger-btn:hover { background: var(--accent-color); color: #000; border-color: var(--accent-color); transform: translateY(-2px); box-shadow: 0 5px 20px rgba(229, 169, 59, 0.35); }
+
+        /* POPUP REVIEW MODAL SYSTEM */
+        .review-modal { display: none; position: fixed; z-index: 4000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); justify-content: center; align-items: center; padding: 15px; }
+        .review-modal-card { background: var(--card-bg); border: var(--glass-border); box-shadow: var(--glass-shadow); width: 100%; max-width: 440px; border-radius: 24px; padding: 30px 25px; position: relative; text-align: center; animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .review-modal-close { position: absolute; top: 15px; right: 20px; color: var(--text-color); font-size: 24px; cursor: pointer; opacity: 0.6; transition: 0.3s; }
         .review-modal-close:hover { opacity: 1; color: var(--accent-color); transform: rotate(90deg); }
-
-        .review-modal-card h3 {
-            font-size: 1.25rem; margin-bottom: 8px; color: var(--text-color);
-        }
-        .review-modal-card p {
-            font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;
-        }
-
-        .review-form-group {
-            margin-bottom: 15px; text-align: left;
-        }
-        .review-form-group label {
-            display: block; font-size: 0.8rem; margin-bottom: 5px; color: var(--text-muted); font-weight: 500;
-        }
-
-        .review-modal-input {
-            width: 100%; padding: 11px 14px; border-radius: 12px; background: rgba(255,255,255,0.05); border: var(--glass-border); color: var(--text-color); font-size: 0.9rem; outline: none; transition: border-color 0.3s;
-        }
+        .review-modal-card h3 { font-size: 1.25rem; margin-bottom: 8px; color: var(--text-color); }
+        .review-modal-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px; }
+        .review-form-group { margin-bottom: 15px; text-align: left; }
+        .review-form-group label { display: block; font-size: 0.8rem; margin-bottom: 5px; color: var(--text-muted); font-weight: 500; }
+        .review-modal-input { width: 100%; padding: 11px 14px; border-radius: 12px; background: rgba(255,255,255,0.05); border: var(--glass-border); color: var(--text-color); font-size: 0.95rem; outline: none; transition: border-color 0.3s; }
         [data-theme="light"] .review-modal-input { background: rgba(0,0,0,0.03); }
         .review-modal-input:focus { border-color: var(--accent-color); }
-
-        /* Stars Selector */
-        .star-selector {
-            display: flex; gap: 8px; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; margin-top: 5px;
-        }
-        .star-selector i {
-            color: rgba(255, 255, 255, 0.15); cursor: pointer; transition: transform 0.2s, color 0.2s;
-        }
+        .star-selector { display: flex; gap: 8px; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; margin-top: 5px; }
+        .star-selector i { color: rgba(255, 255, 255, 0.15); cursor: pointer; transition: transform 0.2s, color 0.2s; }
         [data-theme="light"] .star-selector i { color: rgba(0, 0, 0, 0.12); }
-        .star-selector i.active, .star-selector i:hover {
-            color: #ffc107; transform: scale(1.2);
-        }
-
-        .review-submit-btn {
-            width: 100%; background: var(--accent-color); color: #000; border: none; padding: 12px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;
-        }
+        .star-selector i.active, .star-selector i:hover { color: #ffc107; transform: scale(1.2); }
+        .review-submit-btn { width: 100%; background: var(--accent-color); color: #000; border: none; padding: 12px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; }
         .review-submit-btn:hover { box-shadow: 0 5px 15px rgba(229, 169, 59, 0.4); transform: translateY(-2px); }
 
         /* Lightbox Layout */
-        .lightbox {
-            display: none; position: fixed; z-index: 2000; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.94); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            justify-content: center; align-items: center; padding: 20px;
-        }
+        .lightbox { display: none; position: fixed; z-index: 6000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.94); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); justify-content: center; align-items: center; padding: 20px; }
         .lightbox-content { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; border: var(--glass-border); animation: zoomIn 0.3s ease-out; }
-        .lightbox-close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 35px; cursor: pointer; z-index: 2100; transition: transform 0.3s ease; }
+        .lightbox-close { position: absolute; top: 20px; right: 25px; color: #fff; font-size: 35px; cursor: pointer; z-index: 6100; transition: transform 0.3s ease; }
         .lightbox-close:hover { transform: scale(1.2) rotate(90deg); color: var(--accent-color); }
 
-        /* --- 👤 RESPONSIVE AUTH MODAL --- */
-        .auth-modal {
-            display: none; position: fixed; z-index: 3000; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            justify-content: center; align-items: center; padding: 15px; overflow-y: auto;
-        }
+        /* AUTH MODAL */
+        .auth-modal { display: none; position: fixed; z-index: 3000; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); justify-content: center; align-items: center; padding: 15px; overflow-y: auto; }
         .auth-card { background: var(--card-bg); border: var(--glass-border); box-shadow: var(--glass-shadow); width: 100%; max-width: 400px; border-radius: 24px; padding: 30px 25px; position: relative; margin: auto; animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .auth-close { position: absolute; top: 15px; right: 20px; color: var(--text-color); font-size: 24px; cursor: pointer; opacity: 0.6; transition: 0.3s; }
         .auth-close:hover { opacity: 1; color: var(--accent-color); transform: rotate(90deg); }
@@ -531,7 +577,7 @@
         .social-icons a { color: var(--text-muted); font-size: 1.3rem; margin: 0 10px; text-decoration: none; transition: 0.3s;}
         .social-icons a:hover { color: var(--accent-color); transform: translateY(-3px); }
 
-        /* --- KEYFRAMES --- */
+        /* --- ANIMATIONS KEYFRAMES --- */
         @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
         @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         @keyframes modalPop { from { opacity: 0; transform: translateY(-30px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -541,6 +587,7 @@
         @media (max-width: 992px) {
             header { padding: 16px 5%; }
             .section { padding: 80px 5% 40px 5%; }
+            .page-overlay-premium { padding: 50px 5%; }
             .feedback-slider-container { padding: 20px 5% 40px 5%; }
         }
 
@@ -554,8 +601,14 @@
             .lightbox-close { top: 15px; right: 15px; font-size: 30px; }
             .gallery-item:hover { transform: translateY(-4px); }
             .gallery-item:hover img { transform: scale(1.03); }
-            
             .feedback-card { min-width: 290px; padding: 24px 20px; }
+        }
+
+        @media (max-width: 576px) {
+            .premium-content-card { padding: 25px 15px; border-radius: 16px; }
+            .price-table th, .price-table td { padding: 12px 10px; font-size: 0.82rem; }
+            .price-col { font-size: 0.9rem; }
+            .inner-page-header h2 { font-size: 1.3rem; }
         }
 
         @media (max-width: 480px) {
@@ -648,19 +701,21 @@
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="album" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=600" alt="Premium Album">
+            <!-- PREMIUM ALBUM OVERLAY LINK -->
+            <div class="gallery-item" data-category="album" onclick="goToPremiumPage('premiumAlbumsPage')">
+                <img src="https://i.postimg.cc/28f5v5gX/Sample.jpg" alt="Premium Album">
                 <div class="gallery-overlay">
-                    <h3>Premium Album</h3>
-                    <p><i class="fa-solid fa-book-open"></i> View Album</p>
+                    <h3>Premium Albums</h3>
+                    <p><i class="fa-solid fa-right-to-bracket"></i> Enter Album Shop</p>
                 </div>
             </div>
 
-            <div class="gallery-item" data-category="frames" onclick="openLightbox(this)">
-                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=600" alt="Premium Glass Frame">
+            <!-- PREMIUM GLASS FRAMES CARD -->
+            <div class="gallery-item" data-category="frames" onclick="goToPremiumPage('premiumFramesPage')">
+                <img src="https://i.postimg.cc/bYxbD4sP/Whats-App-Image-2026-05-22-at-4-25-15-PM.jpg" alt="Premium Glass Frame">
                 <div class="gallery-overlay">
                     <h3>Premium Glass Frames</h3>
-                    <p><i class="fa-solid fa-crop-simple"></i> View Frame Sizes</p>
+                    <p><i class="fa-solid fa-right-to-bracket"></i> Enter Frame Shop</p>
                 </div>
             </div>
         </div>
@@ -672,16 +727,227 @@
         <img class="lightbox-content" id="lightboxImg" alt="Lightbox Image">
     </div>
 
-    <!-- 💬 CUSTOMER REVIEWS SLIDER SECTION -->
+
+    <!-- 📘 PREMIUM ALBUMS SEPARATE FULL SCREEN INTERFACE -->
+    <div id="premiumAlbumsPage" class="page-overlay-premium">
+        <div class="inner-page-header">
+            <button class="back-btn-premium" onclick="leavePremiumPage('premiumAlbumsPage')">
+                <i class="fa-solid fa-arrow-left"></i> Back to Studio
+            </button>
+            <h2 style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-weight:700; color:var(--accent-color);">PREMIUM ALBUMS</h2>
+        </div>
+
+        <div class="premium-content-card">
+            <div style="text-align: center; margin-bottom: 35px;">
+                <h2 style="font-size: 1.8rem; letter-spacing: 1.5px; margin-bottom: 5px;">Photo Albums - Packages List</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Crystal clear lay-flat printing, heavy-sheet storybooks with luxury box case packaging.</p>
+            </div>
+
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th><i class="fa-solid fa-book"></i> Album Category & Size</th>
+                        <th><i class="fa-solid fa-layer-group"></i> Inclusions (Pages / Finishes)</th>
+                        <th style="text-align: right;"><i class="fa-solid fa-money-bill-wave"></i> Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📘 Standard 08 × 24</td>
+                        <td>15 Pages (Eco Matte / Gloss Finish) + Soft Case</td>
+                        <td class="price-col">රු. 18,500/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📘 Executive 10 × 24</td>
+                        <td>20 Pages (Metallic Silk Sheet) + Standard Wooden Box</td>
+                        <td class="price-col">රු. 24,000/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📘 Premium Portrait 12 × 18</td>
+                        <td>25 Pages (Vertical Lay-flat HD Prints) + Eco Leather Case</td>
+                        <td class="price-col">රු. 32,500/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📘 Royal Landscape 12 × 30</td>
+                        <td>30 Pages (Luxury Canvas Feel Finish) + Personalized Premium Box</td>
+                        <td class="price-col"><span class="hot-badge">Popular</span> රු. 42,000/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📘 Elite Wedding Storybook 12 × 36</td>
+                        <td>40 Pages (Super Gloss HD Retouched Sheets) + Fully Custom Crafted Case</td>
+                        <td class="price-col"><span class="promo-badge">Best Choice</span> රු. 55,000/=</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 📸 ALBUM MOCKUP SHOWCASE (UPDATED IMAGES) -->
+            <div class="showcase-preview-section">
+                <h3 style="font-size: 1.3rem; letter-spacing: 1px; color: var(--accent-color); text-align: center; margin-bottom: 5px;">Album Crafting Layouts</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; text-align: center; margin-bottom: 25px;">Premium storytelling sheets and presentation look. Click to inspect finish.</p>
+                
+                <div class="showcase-preview-grid">
+                    <!-- Image 1 -->
+                    <div class="showcase-sample-item" onclick="openLightboxFromSrc('https://i.postimg.cc/28f5v5gX/Sample.jpg')">
+                        <div class="showcase-img-wrapper">
+                            <img src="https://i.postimg.cc/28f5v5gX/Sample.jpg" alt="Seamless Lay-Flat Spread">
+                        </div>
+                        <div class="showcase-sample-info">
+                            <h4>Seamless Lay-Flat Spreads</h4>
+                            <p>Panoramic 180-degree edge-to-edge printing</p>
+                        </div>
+                    </div>
+
+                    <!-- Image 2 -->
+                    <div class="showcase-sample-item" onclick="openLightboxFromSrc('https://i.postimg.cc/Qx0rtxDT/68.jpg')">
+                        <div class="showcase-img-wrapper">
+                            <img src="https://i.postimg.cc/Qx0rtxDT/68.jpg" alt="HD Matte High Retouch Pages">
+                        </div>
+                        <div class="showcase-sample-info">
+                            <h4>HD Matte High Retouch Pages</h4>
+                            <p>Smudge-proof, true-to-life tone color preservation</p>
+                        </div>
+                    </div>
+
+                    <!-- Image 3 -->
+                    <div class="showcase-sample-item" onclick="openLightboxFromSrc('https://i.postimg.cc/FRQ6p2mL/70.jpg')">
+                        <div class="showcase-img-wrapper">
+                            <img src="https://i.postimg.cc/FRQ6p2mL/70.jpg" alt="Luxury Box Presentation">
+                        </div>
+                        <div class="showcase-sample-info">
+                            <h4>Luxury Box Presentation</h4>
+                            <p>Premium handcrafted hardbound cover storage cases</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">* Premium album layouts include custom story layout design by professional editors.</p>
+                <a href="https://wa.me/94771234567?text=Hi,%20I'm%20interested%20in%20ordering%20a%20Premium%20Photo%20Album." target="_blank" class="whatsapp-btn" style="padding: 12px 30px; font-size:0.95rem;">
+                    <i class="fa-solid fa-cart-shopping"></i> Order via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 🖼️ GLASS FRAMES SEPARATE FULL SCREEN INTERFACE -->
+    <div id="premiumFramesPage" class="page-overlay-premium">
+        <div class="inner-page-header">
+            <button class="back-btn-premium" onclick="leavePremiumPage('premiumFramesPage')">
+                <i class="fa-solid fa-arrow-left"></i> Back to Studio
+            </button>
+            <h2 style="font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-weight:700; color:var(--accent-color);">GLASS FRAMES</h2>
+        </div>
+
+        <div class="premium-content-card">
+            <div style="text-align: center; margin-bottom: 35px;">
+                <h2 style="font-size: 1.8rem; letter-spacing: 1.5px; margin-bottom: 5px;">Glass Frames - Price List</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">High definition output, borderless scratch-resistant premium glass frames.</p>
+            </div>
+
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th><i class="fa-solid fa-expand"></i> Dimensions (Size)</th>
+                        <th><i class="fa-solid fa-circle-check"></i> Ideal Choice For</th>
+                        <th style="text-align: right;"><i class="fa-solid fa-money-bill-wave"></i> Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📏 08 × 12</td>
+                        <td>Table Top Display / Small Gift Frame</td>
+                        <td class="price-col">රු. 2,100/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📏 10 × 12</td>
+                        <td>Standard Portrait Frame</td>
+                        <td class="price-col">රු. 2,500/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📏 10 × 15</td>
+                        <td>Wall Highlight / Gift Framing</td>
+                        <td class="price-col">රු. 3,200/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📏 12 × 15</td>
+                        <td>Bed Room Wall / Medium Portrait</td>
+                        <td class="price-col">රු. 3,800/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📏 12 × 18</td>
+                        <td>Living Room Wall / Couple Shoot Highlight</td>
+                        <td class="price-col"><span class="hot-badge">Popular</span> රු. 5,150/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📏 16 × 24</td>
+                        <td>Family Portrait / Large Wall Frame</td>
+                        <td class="price-col">රු. 8,000/=</td>
+                    </tr>
+                    <tr class="table-row-anim">
+                        <td class="size-col">📏 20 × 30</td>
+                        <td>Main Wedding Frame Highlight</td>
+                        <td class="price-col"><span class="promo-badge">Best Value</span> රු. 11,000/=</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- PHOTO SHOWCASE MOCKUPS -->
+            <div class="showcase-preview-section">
+                <h3 style="font-size: 1.3rem; letter-spacing: 1px; color: var(--accent-color); text-align: center; margin-bottom: 5px;">Our Frame Creations</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; text-align: center; margin-bottom: 25px;">Real showcase of our crystal clear glass photo prints. Click to enlarge look.</p>
+                
+                <div class="showcase-preview-grid">
+                    <div class="showcase-sample-item" onclick="openLightboxFromSrc('https://i.postimg.cc/bYxbD4sP/Whats-App-Image-2026-05-22-at-4-25-15-PM.jpg')">
+                        <div class="showcase-img-wrapper">
+                            <img src="https://i.postimg.cc/bYxbD4sP/Whats-App-Image-2026-05-22-at-4-25-15-PM.jpg" alt="Borderless Full-Bleed Frame">
+                        </div>
+                        <div class="showcase-sample-info">
+                            <h4>Borderless Full-Bleed</h4>
+                            <p>Edge-to-edge luxury glass design</p>
+                        </div>
+                    </div>
+
+                    <div class="showcase-sample-item" onclick="openLightboxFromSrc('https://i.postimg.cc/zX40pCDk/269c0f9bcbbbd33a428fa03f821e8c40.jpg')">
+                        <div class="showcase-img-wrapper">
+                            <img src="https://i.postimg.cc/zX40pCDk/269c0f9bcbbbd33a428fa03f821e8c40.jpg" alt="Elegant Border Frame">
+                        </div>
+                        <div class="showcase-sample-info">
+                            <h4>Elegant Border Frame</h4>
+                            <p>Art gallery style minimalist mat finish</p>
+                        </div>
+                    </div>
+
+                    <div class="showcase-sample-item" onclick="openLightboxFromSrc('https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=600')">
+                        <div class="showcase-img-wrapper">
+                            <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=600" alt="Portrait Wall Showcase">
+                        </div>
+                        <div class="showcase-sample-info">
+                            <h4>HD Vivid Retouch Frame</h4>
+                            <p>Enhanced depth & high definition gloss</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">* High-quality finishing. Islandwide delivery is available safely packed.</p>
+                <a href="https://wa.me/94771234567?text=Hi,%20I'm%20interested%20in%20ordering%20a%20Glass%20Frame." target="_blank" class="whatsapp-btn" style="padding: 12px 30px; font-size:0.95rem;">
+                    <i class="fa-solid fa-cart-shopping"></i> Order via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- CUSTOMER REVIEWS SLIDER SECTION -->
     <section class="feedback-section" id="testimonials">
         <div class="reveal">
             <h2 class="section-title">What Our Clients Say</h2>
         </div>
 
-        <!-- Slider Container -->
         <div class="feedback-slider-container reveal" id="reviewsContainer">
-            
-            <!-- Default Review 1 -->
             <div class="feedback-card">
                 <div class="feedback-user">
                     <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150" alt="Customer 1">
@@ -697,7 +963,6 @@
                 <i class="fa-solid fa-quote-right feedback-quote-icon"></i>
             </div>
 
-            <!-- Default Review 2 -->
             <div class="feedback-card">
                 <div class="feedback-user">
                     <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150" alt="Customer 2">
@@ -713,7 +978,6 @@
                 <i class="fa-solid fa-quote-right feedback-quote-icon"></i>
             </div>
 
-            <!-- Default Review 3 -->
             <div class="feedback-card">
                 <div class="feedback-user">
                     <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150" alt="Customer 3">
@@ -728,10 +992,8 @@
                 <p class="feedback-text">"Friendly service එකක් ලැබුණේ. Outdoor shoot එක කරන වෙලාවේ සපෝට් එක උපරිමයි. Color retouching පැත්ත නියමෙටම කරලා තියෙනවා."</p>
                 <i class="fa-solid fa-quote-right feedback-quote-icon"></i>
             </div>
-
         </div>
 
-        <!-- ➕ TRIGGER BUTTON FOR CUSTOMERS -->
         <div class="reveal">
             <button class="write-review-trigger-btn" onclick="openReviewModal()">
                 <i class="fa-solid fa-pen-to-square"></i> Write a Review
@@ -739,79 +1001,72 @@
         </div>
     </section>
 
-    <!-- 📝 USER FRIENDLY POPUP REVIEW MODAL -->
+    <!-- WRITE REVIEW MODAL -->
     <div id="reviewModal" class="review-modal">
         <div class="review-modal-card">
             <span class="review-modal-close" onclick="closeReviewModal()">&times;</span>
-            <h3>Share Your Experience</h3>
-            <p>ඔබේ වටිනා අදහස අපිට ලියා එවන්න.</p>
+            <h3>Leave a Feedback</h3>
+            <p>Share your experience with Maliyah Picstudio</p>
             
-            <form id="easyReviewForm" onsubmit="handleReviewSubmit(event)">
-                <div class="review-form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="revName" class="review-modal-input" placeholder="e.g., Malith Nethsara" required>
-                </div>
-                
-                <div class="review-form-group">
-                    <label>Service Type</label>
-                    <input type="text" id="revService" class="review-modal-input" placeholder="e.g., Wedding / Portrait / Frame" required>
-                </div>
-
-                <!-- Star Selector -->
-                <div class="review-form-group" style="text-align: center;">
-                    <label style="text-align: center; display: block;">Your Rating</label>
-                    <div class="star-selector">
-                        <i class="fa-solid fa-star" onclick="setFormRating(1)"></i>
-                        <i class="fa-solid fa-star" onclick="setFormRating(2)"></i>
-                        <i class="fa-solid fa-star" onclick="setFormRating(3)"></i>
-                        <i class="fa-solid fa-star" onclick="setFormRating(4)"></i>
-                        <i class="fa-solid fa-star" onclick="setFormRating(5)"></i>
-                    </div>
-                </div>
-
-                <div class="review-form-group">
-                    <label>Review Message</label>
-                    <textarea id="revMessage" class="review-modal-input" rows="4" placeholder="How was our service?..." style="resize: none;" required></textarea>
-                </div>
-
-                <button type="submit" class="review-submit-btn">Submit Review</button>
-            </form>
+            <div class="review-form-group">
+                <label>Your Name</label>
+                <input type="text" id="reviewerName" class="review-modal-input" placeholder="Enter your name">
+            </div>
+            <div class="review-form-group">
+                <label>Service Category</label>
+                <input type="text" id="reviewerService" class="review-modal-input" placeholder="e.g., Wedding Photoshoot, Frame">
+            </div>
+            <div class="review-form-group">
+                <label>Your Review</label>
+                <textarea id="reviewerText" class="review-modal-input" rows="3" placeholder="Write your review here..."></textarea>
+            </div>
+            
+            <label style="display:block; font-size:0.8rem; color:var(--text-muted); text-align:left; margin-bottom:5px;">Rating</label>
+            <div class="star-selector" id="starSelector">
+                <i class="fa-solid fa-star active" data-value="1"></i>
+                <i class="fa-solid fa-star active" data-value="2"></i>
+                <i class="fa-solid fa-star active" data-value="3"></i>
+                <i class="fa-solid fa-star active" data-value="4"></i>
+                <i class="fa-solid fa-star active" data-value="5"></i>
+            </div>
+            
+            <button class="review-submit-btn" onclick="submitReview()">Submit Review</button>
         </div>
     </div>
 
-    <!-- 👤 LOGIN / SIGNUP MODAL -->
+    <!-- AUTH MODAL -->
     <div id="authModal" class="auth-modal">
         <div class="auth-card">
             <span class="auth-close" onclick="closeAuthModal()">&times;</span>
             <div class="auth-tabs">
-                <button class="auth-tab active" onclick="switchAuthTab('login', this)">Login</button>
-                <button class="auth-tab" onclick="switchAuthTab('register', this)">Sign Up</button>
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
             </div>
-            <!-- Login Form -->
-            <form id="loginForm" class="auth-form active" onsubmit="event.preventDefault(); alert('Login Form Submitted!');">
+            
+            <form id="loginForm" class="auth-form active" onsubmit="event.preventDefault(); alert('Login Successful!'); closeAuthModal();">
                 <div class="input-group">
                     <label>Email Address</label>
-                    <input type="email" placeholder="example@gmail.com" required>
+                    <input type="email" required placeholder="example@mail.com">
                 </div>
                 <div class="input-group">
                     <label>Password</label>
-                    <input type="password" placeholder="••••••••" required>
+                    <input type="password" required placeholder="••••••••">
                 </div>
-                <button type="submit" class="auth-submit-btn">Sign In</button>
+                <button type="submit" class="auth-submit-btn">Login</button>
             </form>
-            <!-- Register Form -->
-            <form id="registerForm" class="auth-form" onsubmit="event.preventDefault(); alert('Registration Form Submitted!');">
+
+            <form id="signupForm" class="auth-form" onsubmit="event.preventDefault(); alert('Registration Successful!'); closeAuthModal();">
                 <div class="input-group">
                     <label>Full Name</label>
-                    <input type="text" placeholder="John Doe" required>
+                    <input type="text" required placeholder="John Doe">
                 </div>
                 <div class="input-group">
                     <label>Email Address</label>
-                    <input type="email" placeholder="example@gmail.com" required>
+                    <input type="email" required placeholder="example@mail.com">
                 </div>
                 <div class="input-group">
                     <label>Password</label>
-                    <input type="password" placeholder="••••••••" required>
+                    <input type="password" required placeholder="••••••••">
                 </div>
                 <button type="submit" class="auth-submit-btn">Create Account</button>
             </form>
@@ -821,10 +1076,10 @@
     <!-- Contact Section -->
     <section class="section" id="contact">
         <div class="contact-container reveal">
-            <h2 class="section-title" style="margin-bottom: 20px; font-size: 1.8rem;">Get In Touch</h2>
-            <p>ඔයාට අවශ්‍ය Photoshoot එකක් හෝ Photo Frame එකක් වෙන්කරවා ගැනීමට අදම අපිට කියන්න.</p>
-            <a href="https://wa.me/94773889312?text=Hi%20Maliyah%20Picstudio,%20I%20am%20interested%20in%20your%20services%20and%20frames!" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> Chat via WhatsApp
+            <h2 style="margin-bottom: 15px;">Get In Touch</h2>
+            <p>Let's plan your perfect shoot. Click below to chat directly with us on WhatsApp for bookings and custom pricing inquiries.</p>
+            <a href="https://wa.me/94771234567" target="_blank" class="whatsapp-btn">
+                <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
             </a>
         </div>
     </section>
@@ -832,247 +1087,144 @@
     <!-- Footer -->
     <footer>
         <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
         </div>
         <p>&copy; 2026 MALIYAH PICSTUDIO. All Rights Reserved.</p>
     </footer>
 
-    <!-- --- JAVASCRIPT --- -->
+    <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
-        /* 🌓 Theme Switching Logic */
+        // 1. 🌓 DARK / LIGHT MODE
         const themeToggleBtn = document.getElementById('themeToggle');
-        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark';
-        document.documentElement.setAttribute('data-theme', currentTheme);
-
         themeToggleBtn.addEventListener('click', () => {
-            let theme = document.documentElement.getAttribute('data-theme');
-            if (theme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-            }
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            if (currentTheme === 'light') document.documentElement.removeAttribute('data-theme');
+            else document.documentElement.setAttribute('data-theme', 'light');
         });
 
-        /* 👤 Auth Modal Functions */
-        function openAuthModal() {
-            document.getElementById('authModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeAuthModal() {
-            document.getElementById('authModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        document.getElementById('authModal').addEventListener('click', function(e) {
-            if (e.target === this) { closeAuthModal(); }
-        });
-
-        function switchAuthTab(type, element) {
-            const tabs = document.querySelectorAll('.auth-tab');
-            const forms = document.querySelectorAll('.auth-form');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            forms.forEach(form => form.classList.remove('active'));
-            element.classList.add('active');
-            if(type === 'login') {
-                document.getElementById('loginForm').classList.add('active');
-            } else {
-                document.getElementById('registerForm').classList.add('active');
-            }
-        }
-
-        /* Filter Gallery Logic */
-        function filterGallery(category, e) {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            if (e && e.target) { e.target.classList.add('active'); }
+        // 2. 🔍 PORTFOLIO FILTER SYSTEM
+        function filterGallery(category, event) {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
 
             const items = document.querySelectorAll('.gallery-item');
             items.forEach(item => {
-                if (category === 'all') {
-                    item.classList.remove('hide');
-                } else {
-                    if (item.getAttribute('data-category') === category) {
-                        item.classList.remove('hide');
-                    } else {
-                        item.classList.add('hide');
-                    }
-                }
+                if (category === 'all' || item.getAttribute('data-category') === category) item.classList.remove('hide');
+                else item.classList.add('hide');
             });
-            reveal();
         }
 
-        /* Lightbox Functions */
+        // 3. 🖼 LIGHTBOX IMAGES POPUP
         function openLightbox(element) {
-            var imgSrc = element.getElementsByTagName('img')[0].src;
-            document.getElementById('lightboxImg').src = imgSrc;
+            const imgSrc = element.querySelector('img').src;
+            openLightboxFromSrc(imgSrc);
+        }
+        
+        function openLightboxFromSrc(src) {
+            document.getElementById('lightboxImg').src = src;
             document.getElementById('customLightbox').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
         }
+        
+        function closeLightbox() { document.getElementById('customLightbox').style.display = 'none'; }
 
-        function closeLightbox() {
-            document.getElementById('customLightbox').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        document.getElementById('customLightbox').addEventListener('click', function(e) {
-            if (e.target !== document.getElementById('lightboxImg')) { closeLightbox(); }
-        });
-
-        /* Scroll Reveal Animation Logic */
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 80) {
-                    reveals[i].classList.add("active");
-                }
+        // 4. 👤 AUTH MODAL
+        function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
+        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+        function switchAuthTab(tab) {
+            const tabs = document.querySelectorAll('.auth-tab');
+            const forms = document.querySelectorAll('.auth-form');
+            tabs.forEach(t => t.classList.remove('active'));
+            forms.forEach(f => f.classList.remove('active'));
+            if(tab === 'login') {
+                tabs[0].classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                tabs[1].classList.add('active');
+                document.getElementById('signupForm').classList.add('active');
             }
         }
-        window.addEventListener("scroll", reveal);
-        window.addEventListener("DOMContentLoaded", reveal);
-        setTimeout(reveal, 200);
 
-
-        /* ⚡ USER FRIENDLY REVIEW LOGIC WITH LOCALSTORAGE & DELETE FEATURE ⚡ */
-        let userSelectedRating = 5;
-        setFormRating(5);
-
-        // Page එක Load වෙද්දී සේව් කරපු Reviews Slider එකට ගන්නවා
-        window.addEventListener('DOMContentLoaded', () => {
-            loadSavedReviews();
-            reveal(); 
-        });
-
-        function openReviewModal() {
-            document.getElementById('reviewModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeReviewModal() {
-            document.getElementById('reviewModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        document.getElementById('reviewModal').addEventListener('click', function(e) {
-            if (e.target === this) { closeReviewModal(); }
-        });
-
-        function setFormRating(val) {
-            userSelectedRating = val;
-            const modalStars = document.querySelectorAll('.star-selector i');
-            modalStars.forEach((star, index) => {
-                if (index < val) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
+        // 5. 📝 REVIEWS SYSTEM
+        let selectedRating = 5;
+        function openReviewModal() { document.getElementById('reviewModal').style.display = 'flex'; }
+        function closeReviewModal() { document.getElementById('reviewModal').style.display = 'none'; }
+        const stars = document.querySelectorAll('#starSelector i');
+        stars.forEach(star => {
+            star.addEventListener('click', (e) => {
+                selectedRating = parseInt(e.target.getAttribute('data-value'));
+                stars.forEach((s, idx) => {
+                    if(idx < selectedRating) s.classList.add('active');
+                    else s.classList.remove('active');
+                });
             });
-        }
+        });
 
-        // Slider එකට Review Card එකක් හදන Function එක (මෙතනදී Unique ID එකක් සෙට් කරනවා)
-        function createReviewCard(id, name, service, message, rating, prepend = true) {
+        function submitReview() {
+            const name = document.getElementById('reviewerName').value.trim();
+            const service = document.getElementById('reviewerService').value.trim();
+            const text = document.getElementById('reviewerText').value.trim();
+            if(!name || !service || !text) { alert('Please fill all fields.'); return; }
+
             let starsHtml = '';
-            for (let i = 0; i < rating; i++) {
-                starsHtml += '<i class="fa-solid fa-star"></i>';
-            }
+            for(let i=0; i<5; i++) starsHtml += i < selectedRating ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star" style="color:#ffc107;"></i>';
 
+            const container = document.getElementById('reviewsContainer');
             const newCard = document.createElement('div');
             newCard.className = 'feedback-card';
-            newCard.setAttribute('data-id', id); // Delete කරන්න ලේසි වෙන්න ID එකක් දානවා
             newCard.innerHTML = `
-                <!-- 🗑️ Delete Button -->
-                <button class="review-delete-btn" onclick="deleteReview('${id}')" title="Delete Review">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
+                <button class="review-delete-btn" onclick="this.parentElement.remove()"><i class="fa-solid fa-trash"></i></button>
                 <div class="feedback-user">
-                    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="User Avatar">
-                    <div class="user-info">
-                        <h4>${name}</h4>
-                        <span>${service}</span>
-                    </div>
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=150" alt="User">
+                    <div class="user-info"><h4>${name}</h4><span>${service}</span></div>
                 </div>
-                <div class="rating-stars">
-                    ${starsHtml}
-                </div>
-                <p class="feedback-text">"${message}"</p>
+                <div class="rating-stars">${starsHtml}</div>
+                <p class="feedback-text">"${text}"</p>
                 <i class="fa-solid fa-quote-right feedback-quote-icon"></i>
             `;
-
-            const container = document.getElementById('reviewsContainer');
-            if (prepend) {
-                container.insertBefore(newCard, container.firstChild);
-            } else {
-                container.appendChild(newCard);
-            }
-        }
-
-        // Form එක Submit වෙද්දී වැඩ කරන කොටස
-        function handleReviewSubmit(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('revName').value;
-            const service = document.getElementById('revService').value;
-            const message = document.getElementById('revMessage').value;
-            
-            // Unique ID එකක් විදිහට Current Timestamp එක ගන්නවා
-            const reviewId = 'rev_' + Date.now(); 
-
-            // 1. UI එකට Live Card එක දානවා
-            createReviewCard(reviewId, name, service, message, userSelectedRating, true);
-
-            // 2. LocalStorage එකට සේව් කරනවා
-            const newReviewObj = { id: reviewId, name, service, message, rating: userSelectedRating };
-            let currentReviews = JSON.parse(localStorage.getItem('maliyah_reviews')) || [];
-            currentReviews.unshift(newReviewObj);
-            localStorage.setItem('maliyah_reviews', JSON.stringify(currentReviews));
-
-            // Form එක සහ Modal එක Reset කරනවා
+            container.insertBefore(newCard, container.firstChild);
             closeReviewModal();
-            alert('Thank you! Your review is saved permanently. ❤️');
-            document.getElementById('easyReviewForm').reset();
-            setFormRating(5);
-
-            // Slider එක මුලටම ස්‍ක්‍රෝල් කරනවා
-            const container = document.getElementById('reviewsContainer');
-            container.scrollLeft = 0;
+            document.getElementById('reviewerName').value = '';
+            document.getElementById('reviewerService').value = '';
+            document.getElementById('reviewerText').value = '';
         }
 
-        // LocalStorage එකෙන් Data කියවලා Slider එකට දාන Function එක
-        function loadSavedReviews() {
-            let savedReviews = JSON.parse(localStorage.getItem('maliyah_reviews')) || [];
-            savedReviews.reverse().forEach(rev => {
-                // කලින් ID එකක් නැතිව සේව් වුණු ඒවා තිබුණොත් ඒවටත් Random ID එකක් දෙනවා ආරක්ෂාවට
-                const id = rev.id || 'rev_' + Math.random().toString(36).substr(2, 9);
-                createReviewCard(id, rev.name, rev.service, rev.message, rev.rating, true);
+
+        // 6. 🚨 DYNAMIC PREMIUM OVERLAY PAGES CONTROLLER
+        function goToPremiumPage(pageId) {
+            const targetOverlay = document.getElementById(pageId);
+            document.body.style.overflow = 'hidden'; // Lock main scrolling
+            targetOverlay.style.display = 'block';
+            setTimeout(() => {
+                targetOverlay.classList.add('active');
+            }, 10);
+        }
+
+        function leavePremiumPage(pageId) {
+            const targetOverlay = document.getElementById(pageId);
+            targetOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Unlock main scrolling
+            setTimeout(() => {
+                targetOverlay.style.display = 'none';
+            }, 500);
+        }
+
+
+        // 7. ✨ SCROLL REVEAL ACTIVATION
+        function revealElements() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 120) element.classList.add('active');
             });
         }
-
-        // 🗑️ REVIEW එකක් REMOVE / DELETE කරන FUNCTION එක
-        function deleteReview(id) {
-            if (confirm("Are you sure you want to delete this review?")) {
-                // 1. LocalStorage එකෙන් අදාළ Review එක අයින් කරනවා
-                let currentReviews = JSON.parse(localStorage.getItem('maliyah_reviews')) || [];
-                currentReviews = currentReviews.filter(rev => rev.id !== id);
-                localStorage.setItem('maliyah_reviews', JSON.stringify(currentReviews));
-
-                // 2. UI එකෙන් (Screen එකෙන්) ඒ Card එක Fade-out කරලා අයින් කරනවා
-                const card = document.querySelector(`.feedback-card[data-id="${id}"]`);
-                if (card) {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.8)';
-                    card.style.transition = 'all 0.3s ease';
-                    setTimeout(() => {
-                        card.remove();
-                    }, 300);
-                }
-            }
-        }
+        window.addEventListener('scroll', revealElements);
+        window.addEventListener('load', revealElements);
     </script>
 </body>
 </html>
+
