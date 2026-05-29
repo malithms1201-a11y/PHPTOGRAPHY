@@ -1228,3 +1228,239 @@
 </body>
 </html>
 
+<style>
+    /* වෙසක් කුඩු ඇනිමේෂන් */
+    .wesak-kudu-container {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        overflow: hidden;
+    }
+
+    .kudu {
+        position: absolute;
+        top: -100px;
+        font-size: 2rem;
+        color: var(--accent-color);
+        filter: drop-shadow(0 0 10px var(--accent-color));
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+        }
+    }
+
+    /* වෙසක් විශේෂ පණිවිඩය */
+    .wesak-banner {
+        background: linear-gradient(90deg, #ff9933, #ffffff, #138808); /* බෞද්ධ කොඩියේ වර්ණවලට සමාන */
+        height: 5px;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 2000;
+    }
+</style>
+
+<div class="wesak-kudu-container" id="wesakKudu"></div>
+
+<script>
+    function createKudu() {
+        const kuduIcons = ['🏮', '✨', '🌸'];
+        const container = document.getElementById('wesakKudu');
+        const kudu = document.createElement('div');
+        
+        kudu.className = 'kudu';
+        kudu.innerText = kuduIcons[Math.floor(Math.random() * kuduIcons.length)];
+        kudu.style.left = Math.random() * 100 + 'vw';
+        kudu.style.animationDuration = Math.random() * 3 + 2 + 's'; // 2s - 5s අතර
+        kudu.style.opacity = Math.random();
+        
+        container.appendChild(kudu);
+
+        setTimeout(() => {
+            kudu.remove();
+        }, 5000);
+    }
+
+    // තත්පරයකට වරක් වෙසක් කුඩුවක් වැටෙන්න සැලැස්වීම
+    setInterval(createKudu, 200);
+</script> 
+
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vesak Side Only Decorations</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #08020f; /* ඔබට අවශ්‍ය නම් මෙතනට වෙනත් background එකක් දැමිය හැක */
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* දෙපැත්තේ සැරසිලි බහාලුම් (Containers) */
+        .side-decoration {
+            position: fixed;
+            top: 0;
+            width: 150px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 9999; /* වෙනත් දේවලට යට නොවී උඩින්ම පෙනීමට */
+            pointer-events: none; /* වෙබ් අඩවියේ Click කිරීමට බාධා නොවන ලෙස */
+        }
+
+        .left-side { left: 40px; }
+        .right-side { right: 40px; }
+
+        /* එල්ලෙන රැහැන්/වැල් */
+        .hanging-string {
+            width: 2px;
+            height: 120px;
+            background: linear-gradient(to bottom, #ff9f43, #ffea00);
+            position: relative;
+        }
+
+        /* වෙසක් කූඩුව */
+        .vesak-lantern {
+            width: 80px;
+            height: 80px;
+            background: #ff4757;
+            transform: rotate(45deg);
+            box-shadow: 0 0 40px #ff4757, inset 0 0 15px #fff;
+            border: 3px solid #ffea00;
+            border-radius: 4px;
+            margin-top: -5px;
+        }
+
+        /* දකුණු කූඩුවේ වර්ණය */
+        .right-side .vesak-lantern {
+            background: #00d2d3;
+            box-shadow: 0 0 40px #00d2d3, inset 0 0 15px #fff;
+        }
+
+        /* කූඩු පැද්දීමේ Animation එක */
+        .left-side .lantern-group {
+            animation: swingLeft 4s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        .right-side .lantern-group {
+            animation: swingRight 4.5s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        /* වෙසක් රැලි */
+        .tassel-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .tassel {
+            width: 8px;
+            height: 70px;
+            background: linear-gradient(to bottom, #ffea00, transparent);
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* නිවී නිවී යන බල්බ් වැල් (Light Bulbs) */
+        .bulb-chain {
+            position: absolute;
+            top: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .bulb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ffea00;
+            box-shadow: 0 0 10px #ffea00;
+            animation: blink 1.5s infinite alternate;
+        }
+
+        .bulb:nth-child(even) {
+            background-color: #ff4757;
+            box-shadow: 0 0 10px #ff4757;
+            animation-delay: 0.5s;
+        }
+
+        /* Keyframes Animations */
+        @keyframes swingLeft {
+            0%, 100% { transform: rotate(-4deg); }
+            50% { transform: rotate(4deg); }
+        }
+
+        @keyframes swingRight {
+            0%, 100% { transform: rotate(4deg); }
+            50% { transform: rotate(-4deg); }
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Mobile දුරකථන සඳහා දෙපැත්තේ කූඩු කුඩා කිරීම */
+        @media (max-width: 768px) {
+            .side-decoration { width: 60px; }
+            .left-side { left: 10px; }
+            .right-side { right: 10px; }
+            .vesak-lantern { width: 50px; height: 50px; }
+            .tassel { height: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- වම් පස සැරසිලි -->
+    <div class="side-decoration left-side">
+        <div class="lantern-group">
+            <div class="hanging-string"></div>
+            <div class="vesak-lantern"></div>
+            <div class="tassel-container">
+                <div class="tassel"></div>
+                <div class="tassel" style="height: 85px;"></div>
+                <div class="tassel"></div>
+            </div>
+        </div>
+        <div class="bulb-chain">
+            <div class="bulb"></div>
+            <div class="bulb"></div>
+            <div class="bulb"></div>
+        </div>
+    </div>
+
+    <!-- දකුණු පස සැරසිලි -->
+    <div class="side-decoration right-side">
+        <div class="lantern-group">
+            <div class="hanging-string"></div>
+            <div class="vesak-lantern"></div>
+            <div class="tassel-container">
+                <div class="tassel"></div>
+                <div class="tassel" style="height: 85px;"></div>
+                <div class="tassel"></div>
+            </div>
+        </div>
+        <div class="bulb-chain">
+            <div class="bulb"></div>
+            <div class="bulb"></div>
+            <div class="bulb"></div>
+        </div>
+    </div>
+
+</body>
+</html>
